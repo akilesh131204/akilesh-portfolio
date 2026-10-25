@@ -1,11 +1,23 @@
+/* ==========================================================================
+   All portfolio content lives in this file.
+   Links left as "" are hidden on the live site. While you run the site
+   locally (npm run dev), required-but-empty links show an amber reminder.
+   ========================================================================== */
+
 export const profile = {
   name: "Akilesh M",
   role: "Full Stack Developer (MERN)",
+  roles: [
+    "Full Stack Developer (MERN)",
+    "React & Node.js Developer",
+    "AI & IoT Project Builder",
+  ],
   location: "Coimbatore, Tamil Nadu",
   email: "akilesh.131204@gmail.com",
   github: "https://github.com/akilesh131204",
   linkedin: "https://linkedin.com/in/akilesh-madanagopal",
   resume: "/Akilesh_M_Resume.pdf",
+  photo: "/images/profile.jpg",
   formEndpoint: "https://formspree.io/f/mwlvarrz",
   tagline:
     "I build end-to-end web applications with React, Node.js, Express and MongoDB, and I enjoy projects that connect software with AI and IoT.",
@@ -16,41 +28,97 @@ export const profile = {
   ],
 };
 
-export const skills = [
-  { group: "Languages", items: ["JavaScript", "Python", "C", "SQL"] },
-  { group: "MERN Stack", items: ["MongoDB", "Express.js", "React.js", "Node.js", "REST APIs"] },
-  { group: "Web", items: ["HTML", "CSS", "Bootstrap", "Tailwind CSS", "UI/UX Design"] },
-  { group: "Tools & Platforms", items: ["Git", "GitHub", "Figma", "Jira", "Excel", "Jupyter Notebook", "Netlify", "Render"] },
-  { group: "AI & IoT", items: ["PyTorch", "OpenCV", "YOLOv8", "Whisper", "Flask", "Socket.IO", "Arduino", "Blynk IoT"] },
+/* ---------- navigation (label, section id) ---------- */
+export const navLinks = [
+  ["About", "about"],
+  ["Resume", "resume"],
+  ["Skills", "skills"],
+  ["Projects", "projects"],
+  ["Experience", "experience"],
+  ["Certifications", "certifications"],
+  ["Contact", "contact"],
 ];
 
+/* ---------- skills ---------- */
+/* icon must be one of: code, layers, globe, wrench, cpu */
+export const skills = [
+  { group: "Languages", icon: "code", items: ["JavaScript", "Python", "C", "SQL"] },
+  { group: "MERN Stack", icon: "layers", items: ["MongoDB", "Express.js", "React.js", "Node.js", "REST APIs"] },
+  { group: "Web", icon: "globe", items: ["HTML", "CSS", "Bootstrap", "Tailwind CSS", "UI/UX Design"] },
+  { group: "Tools & Platforms", icon: "wrench", items: ["Git", "GitHub", "Figma", "Jira", "Excel", "Jupyter Notebook", "Netlify", "Render"] },
+  { group: "AI & IoT", icon: "cpu", items: ["PyTorch", "OpenCV", "YOLOv8", "Whisper", "Flask", "Socket.IO", "Arduino", "Blynk IoT"] },
+];
+
+/* icon must be one of: puzzle, users, message, rocket, clock */
+export const softSkills = [
+  {
+    title: "Problem Solving",
+    icon: "puzzle",
+    text: "Worked through four rounds of evaluator feedback on Eventify, fixing access control, payment and email flows.",
+  },
+  {
+    title: "Teamwork",
+    icon: "users",
+    text: "Built engineering projects such as the gas leakage monitor in a three-member team.",
+  },
+  {
+    title: "Communication",
+    icon: "message",
+    text: "Wrote technical project reports and submitted a project paper to an IEEE conference.",
+  },
+  {
+    title: "Quick Learning",
+    icon: "rocket",
+    text: "Moved between MERN, AI/ML and embedded IoT projects, picking up new tools for each.",
+  },
+  {
+    title: "Time Management",
+    icon: "clock",
+    text: "Balanced coursework, internships and project milestones through to final-year submission.",
+  },
+];
+
+/* ---------- projects ---------- */
+/* category: "mern" or "ai-iot". links type: "live", "code" or "api". */
 export const projects = [
   {
     id: "eventify",
     title: "Eventify",
     subtitle: "Online Event Management Platform",
+    badge: "MERN Stack · Capstone Project",
+    category: "mern",
+    featured: true,
     year: "2026",
     image: "/images/eventify.jpg",
-    featured: true,
     summary:
-      "A full-stack MERN platform where organizers publish events, attendees book and pay online, and admins manage the whole system.",
+      "A full-stack MERN platform where organizers publish events, attendees book and pay online, and admins manage the whole system. The frontend is deployed on Netlify and the backend API on Render.",
     highlights: [
       "Role-based access control for admin, organizer and attendee users, built on REST APIs.",
       "Razorpay payment integration for ticket booking.",
       "Cloudinary image uploads for event media.",
       "Brevo email notifications, a forgot-password flow and a support ticket system.",
     ],
-    tech: ["MongoDB", "Express.js", "React.js", "Node.js", "Razorpay", "Cloudinary", "Brevo"],
+    stack: [
+      { label: "Frontend", items: ["React.js"] },
+      { label: "Backend", items: ["Node.js", "Express.js", "REST APIs"] },
+      { label: "Database", items: ["MongoDB"] },
+      { label: "Services", items: ["Razorpay", "Cloudinary", "Brevo"] },
+    ],
     links: [
       { label: "Live Demo", url: "https://akilesh-eventify.netlify.app", type: "live" },
-      // Replace with the exact Eventify repository URL
-      { label: "GitHub", url: "https://github.com/akilesh131204", type: "code" },
+      // ADD: the exact GitHub URL of the Eventify FRONTEND repository
+      { label: "Frontend Code", url: "https://github.com/akilesh131204/eventify-mern", type: "code", required: true },
+      // ADD: the exact GitHub URL of the Eventify BACKEND repository
+      { label: "Backend Code", url: "https://github.com/akilesh131204/eventify-mern", type: "code", required: true },
+      
     ],
   },
   {
     id: "interview-detection",
     title: "AI-Assisted Cheating Detection",
     subtitle: "Detection System for Virtual Interviews",
+    badge: "Python · AI/ML · React",
+    category: "ai-iot",
     year: "2026",
     image: "/images/interview.jpg",
     summary:
@@ -60,16 +128,22 @@ export const projects = [
       "AI-generated voice detection with a CNN (97.2%).",
       "React interviewer dashboard with live risk meters and fraud alerts over Socket.IO.",
     ],
-    tech: ["Python", "Flask", "Socket.IO", "React.js", "OpenCV", "YOLOv8", "PyTorch", "Whisper", "SQLite"],
+    stack: [
+      { label: "Frontend", items: ["React.js"] },
+      { label: "Backend", items: ["Python", "Flask", "Socket.IO", "SQLite"] },
+      { label: "AI / ML", items: ["OpenCV", "YOLOv8", "PyTorch", "Whisper"] },
+    ],
     links: [
-      // Replace with the exact repository URL, or delete this line if the repo is private
-      { label: "GitHub", url: "https://github.com/akilesh131204", type: "code" },
+      // ADD: the exact GitHub URL of this project's repository
+      { label: "GitHub", url: "https://github.com/akilesh131204/AI-Cheating-Detection-System", type: "code", required: true },
     ],
   },
   {
     id: "gas-leakage",
     title: "Capacity Level & Leakage Detection",
     subtitle: "Automatic IoT Gas Safety Monitor",
+    badge: "IoT · Embedded",
+    category: "ai-iot",
     year: "2024",
     image: "/images/gas.jpg",
     summary:
@@ -79,7 +153,10 @@ export const projects = [
       "Alerts sent to a mobile app through Blynk, with local LCD and LED warnings.",
       "A low-gas threshold warns the user before the cylinder runs empty.",
     ],
-    tech: ["Arduino UNO", "ESP8266", "MQ-5 Sensor", "Load Cell", "LCD", "Blynk IoT"],
+    stack: [
+      { label: "Hardware", items: ["Arduino UNO", "ESP8266", "MQ-5 Sensor", "Load Cell", "LCD"] },
+      { label: "Software", items: ["Blynk IoT"] },
+    ],
     links: [],
   },
 ];
@@ -126,25 +203,29 @@ export const education = {
 export const certifications = [
   {
     title: "Full Stack Development Course with AI Tools (IIT-M Pravartak Certified)",
-    issuer: "HCL GUVI · June 2026",
+    issuer: "HCL GUVI",
+    date: "June 2026",
     file: "/certificates/guvi-fullstack.jpg",
     verifyUrl: "https://v2.zenclass.in/certificateDownload/djroZTLyjnBeN3ar?download=true",
   },
   {
     title: "Introduction to MongoDB (For Students)",
-    issuer: "MongoDB · March 2025",
+    issuer: "MongoDB",
+    date: "March 2025",
     file: "/certificates/mongodb-intro.jpg",
     verifyUrl: "",
   },
   {
     title: "Oracle APEX Cloud Developer Certified Professional",
-    issuer: "Oracle University · May 2025",
+    issuer: "Oracle University",
+    date: "May 2025",
     file: "/certificates/oracle-apex.jpg",
     verifyUrl: "",
   },
   {
     title: "Generative AI with Diffusion Models",
-    issuer: "NVIDIA · September 2025",
+    issuer: "NVIDIA",
+    date: "September 2025",
     file: "/certificates/nvidia-diffusion.jpg",
     verifyUrl: "",
   },

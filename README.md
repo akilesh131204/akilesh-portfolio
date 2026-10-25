@@ -2,7 +2,7 @@
 
 Portfolio of Akilesh M, a Full Stack (MERN) developer from Coimbatore, Tamil Nadu.
 
-**Live site:** https://akilesh-portfolio.netlify.app
+**Live site:** https://akilesh-m-portfolio.netlify.app
 
 ## Sections
 - **About Me** with profile photo and quick facts
